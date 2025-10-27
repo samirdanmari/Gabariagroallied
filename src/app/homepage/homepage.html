@@ -1,0 +1,269 @@
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-content">
+      <div class="nav-brand">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span class="brand-name">GlobalTrade</span>
+      </div>
+      
+      <div class="nav-links">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <button class="menu-button" (click)="toggleMenu()">
+        <span class="menu-icon">☰</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" [class.active]="isMenuOpen">
+    <a href="#home" class="mobile-link" (click)="toggleMenu()">Home</a>
+    <a href="#products" class="mobile-link" (click)="toggleMenu()">Products</a>
+    <a href="#services" class="mobile-link" (click)="toggleMenu()">Services</a>
+    <a href="#contact" class="mobile-link" (click)="toggleMenu()">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Your Trusted Partner in Global Trade</h1>
+      <p class="hero-subtitle">Import & Export of Agro Products, Minerals, and Finished Goods</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn btn-primary">View Products</a>
+        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services">
+  <div class="container">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-icon">{{ service.icon === 'globe' ? '🌍' : service.icon === 'package' ? '📦' : service.icon === 'shopping-cart' ? '🛒' : '📈' }}</div>
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="products">
+  <div class="container">
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-subtitle">We specialize in sourcing and delivering quality products across three major categories</p>
+
+    <div class="product-tabs">
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'agro'"
+        (click)="setActiveTab('agro')">
+        Agro Products
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'minerals'"
+        (click)="setActiveTab('minerals')">
+        Minerals
+      </button>
+      <button 
+        class="tab-button" 
+        [class.active]="activeTab === 'finished'"
+        (click)="setActiveTab('finished')">
+        Finished Products
+      </button>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of getCurrentProducts()">
+        <div class="product-image">{{ product.image }}</div>
+        <h3 class="product-title">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <button class="learn-more">Learn More →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-subtitle">Ready to start your import/export journey? Contact us for a personalized quote</p>
+
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input 
+            type="text" 
+            class="form-input" 
+            [(ngModel)]="formData.name"
+            placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input 
+            type="email" 
+            class="form-input" 
+            [(ngModel)]="formData.email"
+            placeholder="john@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input 
+            type="tel" 
+            class="form-input" 
+            [(ngModel)]="formData.phone"
+            placeholder="+234 123 456 7890">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Company</label>
+          <input 
+            type="text" 
+            class="form-input" 
+            [(ngModel)]="formData.company"
+            placeholder="Your Company Name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Product Interest</label>
+          <select class="form-input" [(ngModel)]="formData.product">
+            <option value="">Select a category</option>
+            <option value="agro">Agro Products</option>
+            <option value="minerals">Minerals</option>
+            <option value="finished">Finished Products</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message *</label>
+          <textarea 
+            class="form-input" 
+            rows="4"
+            [(ngModel)]="formData.message"
+            placeholder="Tell us about your requirements..."></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-full" (click)="onSubmit()">
+          Send Inquiry
+        </button>
+      </div>
+
+      <div class="contact-info">
+        <div class="info-card">
+          <h3 class="info-title">Contact Information</h3>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-text">123 Trade Center, Business District<br>Lagos, Nigeria</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-label">Phone</div>
+              <div class="info-text">+234 123 456 7890</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-text">info@globaltrade.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="certifications-card">
+          <h3 class="info-title">Our Certifications</h3>
+          <div class="cert-item">✓ ISO 9001:2015 Certified</div>
+          <div class="cert-item">✓ International Trade License</div>
+          <div class="cert-item">✓ Quality Assurance Certified</div>
+          <div class="cert-item">✓ Environmental Compliance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <div class="footer-brand">
+          <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+          </svg>
+          <span class="footer-name">GlobalTrade</span>
+        </div>
+        <p class="footer-text">Your trusted partner for international trade in agro products, minerals, and finished goods.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="footer-heading">Products</h4>
+        <a href="#" class="footer-link">Agro Products</a>
+        <a href="#" class="footer-link">Minerals</a>
+        <a href="#" class="footer-link">Finished Goods</a>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="footer-heading">Company</h4>
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">Our Team</a>
+        <a href="#" class="footer-link">Careers</a>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="footer-heading">Legal</h4>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Cookie Policy</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 GlobalTrade. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
