@@ -254,6 +254,29 @@ body {
 .tab-button.active:hover {
   background: #1d4ed8;
 }
+/* .product-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #f3f4f6;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.1);
+}
+
+.product-img[src=""] {
+  display: none;
+} */
 
 .products-grid {
   display: grid;

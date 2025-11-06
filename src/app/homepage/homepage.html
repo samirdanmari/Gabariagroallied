@@ -9,7 +9,7 @@
           <line x1="2" y1="12" x2="22" y2="12"></line>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
         </svg>
-        <span class="brand-name">GlobalTrade</span>
+        <span class="brand-name">Gabari Ta Kiru Agro Allied</span>
       </div>
       
       <div class="nav-links">
@@ -37,7 +37,7 @@
 <section id="home" class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title">Your Trusted Partner in Global Trade</h1>
+      <h1 class="hero-title">Your Trusted Partner in Agric Trade</h1>
       <p class="hero-subtitle">Import & Export of Agro Products, Minerals, and Finished Goods</p>
       <div class="hero-buttons">
         <a href="#products" class="btn btn-primary">View Products</a>
@@ -87,15 +87,29 @@
         Finished Products
       </button>
     </div>
-
     <div class="products-grid">
+  <div class="product-card" *ngFor="let product of getCurrentProducts()">
+    <div class="product-image-container">
+      <img 
+        [src]="product.image" 
+        [alt]="product.name"
+        (error)="onImageError($event)"
+        class="product-img">
+    </div>
+    <h3 class="product-title">{{ product.name }}</h3>
+    <p class="product-description">{{ product.description }}</p>
+    <button class="learn-more">Learn More →</button>
+  </div>
+</div>
+    <!-- <div class="products-grid">
       <div class="product-card" *ngFor="let product of getCurrentProducts()">
         <div class="product-image">{{ product.image }}</div>
         <h3 class="product-title">{{ product.name }}</h3>
         <p class="product-description">{{ product.description }}</p>
         <button class="learn-more">Learn More →</button>
       </div>
-    </div>
+    </div> -->
+
   </div>
 </section>
 
@@ -104,15 +118,15 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item">
-        <div class="stat-number">50+</div>
-        <div class="stat-label">Countries Served</div>
+        <div class="stat-number">14+ States</div>
+        <div class="stat-label">Nation Served</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">1000+</div>
+        <div class="stat-number">500+</div>
         <div class="stat-label">Happy Clients</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">15+</div>
+        <div class="stat-number">5+</div>
         <div class="stat-label">Years Experience</div>
       </div>
     </div>
@@ -133,7 +147,7 @@
             type="text" 
             class="form-input" 
             [(ngModel)]="formData.name"
-            placeholder="John Doe">
+            placeholder="Musa John">
         </div>
 
         <div class="form-group">
@@ -194,29 +208,29 @@
             <div class="info-icon">📍</div>
             <div>
               <div class="info-label">Address</div>
-              <div class="info-text">123 Trade Center, Business District<br>Lagos, Nigeria</div>
+              <div class="info-text">No D350 Abubakar Rimi Market Kano,<br>Kano, Nigeria</div>
             </div>
           </div>
           <div class="info-item">
             <div class="info-icon">📞</div>
             <div>
               <div class="info-label">Phone</div>
-              <div class="info-text">+234 123 456 7890</div>
+              <div class="info-text">+234 803 450 4114</div>
             </div>
           </div>
           <div class="info-item">
             <div class="info-icon">✉️</div>
             <div>
               <div class="info-label">Email</div>
-              <div class="info-text">info@globaltrade.com</div>
+              <div class="info-text">gabaritakiruagro@gmail.com </div>
             </div>
           </div>
         </div>
 
         <div class="certifications-card">
           <h3 class="info-title">Our Certifications</h3>
-          <div class="cert-item">✓ ISO 9001:2015 Certified</div>
-          <div class="cert-item">✓ International Trade License</div>
+          <div class="cert-item">✓ No1857619 Certificate of Incorporation</div>
+          <div class="cert-item">✓ EFCC SCUML Certificate</div>
           <div class="cert-item">✓ Quality Assurance Certified</div>
           <div class="cert-item">✓ Environmental Compliance</div>
         </div>
@@ -235,9 +249,9 @@
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
           </svg>
-          <span class="footer-name">GlobalTrade</span>
+          <span class="footer-name">GabariiTaKiruAgroAllied</span>
         </div>
-        <p class="footer-text">Your trusted partner for international trade in agro products, minerals, and finished goods.</p>
+        <p class="footer-text">Your trusted partner for natioanl and  international trade in agro products, minerals, and finished goods.</p>
       </div>
 
       <div class="footer-column">
@@ -263,7 +277,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 GlobalTrade. All rights reserved.</p>
+      <p>&copy; 2025 GabariTaKiru Agro Allied. All rights reserved.</p>
     </div>
   </div>
 </footer>
