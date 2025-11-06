@@ -14,6 +14,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+
 }
 
 /* Navigation */
@@ -44,12 +45,13 @@ body {
   align-items: center;
   font-size: 24px;
   font-weight: bold;
-  color: #2563eb;
+  color: rgb(36, 34, 34)
 }
 
-.nav-icon {
-  width: 32px;
-  height: 32px;
+
+#brandlogo {
+  width: 50px;
+  height: 50px;
   margin-right: 10px;
   stroke: #2563eb;
 }
@@ -254,7 +256,7 @@ body {
 .tab-button.active:hover {
   background: #1d4ed8;
 }
-/* .product-image-container {
+.product-image-container {
   width: 100%;
   height: 200px;
   overflow: hidden;
@@ -276,7 +278,7 @@ body {
 
 .product-img[src=""] {
   display: none;
-} */
+}
 
 .products-grid {
   display: grid;

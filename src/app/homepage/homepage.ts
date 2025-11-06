@@ -35,24 +35,22 @@ export class Homepage {
     message: ''
   };
 
-// use real images
-
   products = {
     agro: [
       { 
-        name: 'Rice & Grains', 
-        description: 'Premium quality rice, wheat, and other grains', 
-        image: 'assets/images/products/agro/rice.jpg' 
+        name: 'Rice & wheat', 
+        description: 'Premium quality rice, wheat, and other grains.  Our grains are TOTALLY stone-free! They are De-stoned before being packaged', 
+        image: './assets/images/products/agro/rice1.png' 
       },
       { 
-        name: 'Fruits & Vegetables', 
+        name: 'Sesame Seed & ', 
         description: 'Fresh produce exported globally', 
-        image: 'assets/images/products/agro/fruits.jpg' 
+        image: './assets/images/products/agro/sesame.png' 
       },
       { 
-        name: 'Spices', 
-        description: 'Authentic spices and seasonings', 
-        image: 'assets/images/products/agro/spices.jpg' 
+        name: 'Beans & SoyaBeans', 
+        description: 'beans and soy products', 
+        image: './assets/images/products/agro/beans.jpg' 
       },
       { 
         name: 'Coffee & Tea', 
@@ -177,7 +175,7 @@ export class Homepage {
 
   // Helper method to handle image loading errors
   onImageError(event: any): void {
-    event.target.src = 'assets/images/placeholder.jpg'; // Fallback image
+    event.target.src = './assets/blacklogo.png'; // Fallback image
   }
 }
 //     title = 'GlobalTrade Import/Export';
