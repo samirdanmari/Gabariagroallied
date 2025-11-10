@@ -58,21 +58,26 @@ export class Homepage {
         image: 'assets/images/products/agro/coffee.jpg' 
       },
       { 
-        name: 'Nuts & Seeds', 
-        description: 'Cashews, almonds, and various seeds', 
-        image: 'assets/images/products/agro/nuts.jpg' 
+        name: 'Ginger & Garlic', 
+        description: 'Fresh ginger and garlic for culinary use', 
+        image: 'assets/images/products/agro/ginnger.png' 
       },
       { 
-        name: 'Oils & Fats', 
-        description: 'Vegetable oils and natural fats', 
-        image: 'assets/images/products/agro/oils.jpg' 
+        name: 'Chillly Pepper & Cashew Nuts', 
+        description: 'Spicy chili peppers and crunchy cashew nuts', 
+        image: 'assets/images/products/agro/cashew..png' 
+      },
+      { 
+        name: 'Maize & Sorghum', 
+        description: 'High-quality maize and sorghum grains', 
+        image: 'assets/images/products/agro/maize.jpg' 
       }
     ],
     minerals: [
       { 
-        name: 'Iron Ore', 
+        name: 'Zink', 
         description: 'High-grade iron ore for steel production', 
-        image: 'assets/images/products/minerals/iron-ore.jpg' 
+        image: 'assets/images/products/minerals/zink.jpg' 
       },
       { 
         name: 'Copper', 
@@ -103,33 +108,24 @@ export class Homepage {
     finished: [
       { 
         name: 'Textiles & Garments', 
-        description: 'Quality fabrics and ready-made garments', 
-        image: 'assets/images/products/finished/textiles.jpg' 
+        description: 'Quality fabrics', 
+        image: 'assets/images/products/finishedproduct/fabrics.jpeg' 
       },
       { 
-        name: 'Electronics', 
+        name: 'Food Items', 
         description: 'Consumer and industrial electronics', 
-        image: 'assets/images/products/finished/electronics.jpg' 
+        image: 'assets/images/products/finishedproduct/indomie.jpg' 
       },
       { 
         name: 'Machinery', 
         description: 'Industrial and agricultural machinery', 
-        image: 'assets/images/products/finished/machinery.jpg' 
+        image: 'assets/images/products/finishedproduct/farmingmachines.jpeg' 
       },
-      { 
-        name: 'Pharmaceuticals', 
-        description: 'Certified medicines and healthcare products', 
-        image: 'assets/images/products/finished/pharmaceuticals.jpg' 
-      },
-      { 
-        name: 'Automotive Parts', 
-        description: 'Vehicle components and accessories', 
-        image: 'assets/images/products/finished/automotive.jpg' 
-      },
+
       { 
         name: 'Construction Materials', 
         description: 'Cement, steel, and building supplies', 
-        image: 'assets/images/products/finished/construction.jpg' 
+        image: 'assets/images/products/finishedproduct/construction.png' 
       }
     ]
   };
