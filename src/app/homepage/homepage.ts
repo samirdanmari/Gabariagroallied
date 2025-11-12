@@ -25,6 +25,14 @@ export class Homepage {
   title = 'GlobalTrade Import/Export';
   isMenuOpen = false;
   activeTab: 'agro' | 'minerals' | 'finished' = 'agro';
+  showChannelModal = false;
+
+  // Contact details
+  businessContact = {
+    phone: '++2348083832228',     
+    email: 'gabaritakiruagro@gmail.com',
+    whatsappNumber: '2348083832228'  
+  };
 
   formData: ContactForm = {
     name: '',
@@ -137,7 +145,7 @@ export class Homepage {
     { icon: 'trending-up', title: 'Competitive Pricing', description: 'Best rates with transparent pricing' }
   ];
 
-  toggleMenu(): void {
+toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
@@ -149,15 +157,90 @@ export class Homepage {
     return this.products[this.activeTab];
   }
 
+  // Show modal when user clicks Send Inquiry
   onSubmit(): void {
-    if (this.formData.name && this.formData.email && this.formData.message) {
-      alert('Thank you for your inquiry! We will contact you shortly.');
-      this.resetForm();
-    } else {
-      alert('Please fill in all required fields.');
+    if (!this.formData.name || !this.formData.email || !this.formData.message) {
+      alert('Please fill in all required fields (Name, Email, and Message).');
+      return;
     }
+    // Show channel selection modal
+    this.showChannelModal = true;
   }
 
+  // Close modal
+  closeModal(): void {
+    this.showChannelModal = false;
+  }
+
+  // Format the message with all form data
+  formatMessage(): string {
+    let message = `Hello! I'm interested in your import/export services.\n\n`;
+    message += `Name: ${this.formData.name}\n`;
+    message += `Email: ${this.formData.email}\n`;
+    
+    if (this.formData.phone) {
+      message += `Phone: ${this.formData.phone}\n`;
+    }
+    if (this.formData.company) {
+      message += `Company: ${this.formData.company}\n`;
+    } 
+    if (this.formData.product) {
+      message += `Interested in: ${this.formData.product}\n`;
+    }
+    message += `\nMessage:\n${this.formData.message}`;    
+    return message;
+  }
+
+  // Send via WhatsApp
+  sendViaWhatsApp(): void {
+    const message = this.formatMessage();
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${this.businessContact.whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    this.closeModal();
+    this.showSuccessMessage('Opening WhatsApp...');
+    this.resetForm();
+  }
+
+  // Send via Email
+  sendViaEmail(): void {
+    const message = this.formatMessage();
+    const subject = `Inquiry from ${this.formData.name} - ${this.formData.product || 'General Inquiry'}`;
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(message);
+    
+    // Open email client with pre-filled data
+    const mailtoUrl = `mailto:${this.businessContact.email}?subject=${encodedSubject}&body=${encodedBody}`;
+    window.location.href = mailtoUrl;
+    
+    this.closeModal();
+    this.showSuccessMessage('Opening your email client...');
+    this.resetForm();
+  }
+
+  // Send via SMS
+  sendViaSMS(): void {
+    const message = this.formatMessage();
+    const encodedMessage = encodeURIComponent(message);
+    
+    // SMS URL (works on mobile devices)
+    const smsUrl = `sms:${this.businessContact.phone}?body=${encodedMessage}`;
+    window.location.href = smsUrl;
+    
+    this.closeModal();
+    this.showSuccessMessage('Opening SMS...');
+    this.resetForm();
+  }
+
+  // Show success message
+  showSuccessMessage(message: string): void {
+    alert(message);
+  }
+
+  // Reset form after sending
   resetForm(): void {
     this.formData = {
       name: '',
@@ -168,97 +251,8 @@ export class Homepage {
       message: ''
     };
   }
-
   // Helper method to handle image loading errors
   onImageError(event: any): void {
     event.target.src = './assets/blacklogo.png'; // Fallback image
   }
 }
-//     title = 'GlobalTrade Import/Export';
-//   isMenuOpen = false;
-//   activeTab: 'agro' | 'minerals' | 'finished' = 'agro';
-
-//   formData: ContactForm = {
-//     name: '',
-//     email: '',
-//     phone: '',
-//     company: '',
-//     product: '',
-//     message: ''
-//   };
-
-//   products = {
-//   agro: [
-//       { 
-//         name: 'Rice & Grains', 
-//         description: 'Premium quality rice, wheat, and other grains', 
-//         image: 'assets/images/products/agro/beans.jpg' 
-//       },
-//       { name: 'Fruits & Vegetables', description: 'Fresh produce exported globally', image: '' },
-//       { name: 'Spices', description: 'Authentic spices and seasonings', image: '' },
-//       { name: 'Coffee & Tea', description: 'Premium coffee beans and tea leaves', image: 'A' },
-//       { name: 'Nuts & Seeds', description: 'Cashews, almonds, and various seeds', image: '' },
-//       { name: 'Oils & Fats', description: 'Vegetable oils and natural fats', image: '' }
-//     ],
-//     minerals: [
-//       { name: 'Iron Ore', description: 'High-grade iron ore for steel production', image: '⛏️' },
-//       { name: 'Copper', description: 'Pure copper concentrate and cathodes', image: '🔩' },
-//       { name: 'Limestone', description: 'Quality limestone for construction', image: '🪨' },
-//       { name: 'Coal', description: 'Thermal and coking coal', image: '⚫' },
-//       { name: 'Gold & Precious Metals', description: 'Refined precious metals', image: '✨' },
-//       { name: 'Bauxite', description: 'Aluminum ore and derivatives', image: '🪨' }
-//     ],
-//     finished: [
-//       { name: 'Textiles & Garments', description: 'Quality fabrics and ready-made garments', image: '👔' },
-//       { name: 'Food & Beverages', description: 'Consumer and industrial food products', image: '📱' },
-//       { name: 'Machinery', description: 'Industrial and agricultural machinery', image: '⚙️' },
-//       { name: 'Pharmaceuticals', description: 'Certified medicines and healthcare products', image: '💊' },
-//       // { name: 'Automotive Parts', description: 'Vehicle components and accessories', image: '🚗' },
-//       { name: 'Construction Materials', description: 'Cement, steel, and building supplies', image: '🏗️' }
-//     ]
-//   };
-
-//   services = [
-//     { icon: 'globe', title: 'Global Network', description: 'Worldwide shipping to 50+ countries' },
-//     { icon: 'package', title: 'Quality Assurance', description: 'Certified products meeting international standards' },
-//     { icon: 'shopping-cart', title: 'Custom Solutions', description: 'Tailored import/export packages' },
-//     { icon: 'trending-up', title: 'Competitive Pricing', description: 'Best rates with transparent pricing' }
-//   ];
-
-//    toggleMenu(): void {
-//     this.isMenuOpen = !this.isMenuOpen;
-//   }
-
-//   setActiveTab(tab: 'agro' | 'minerals' | 'finished'): void {
-//     this.activeTab = tab;
-//   }
-
-//   getCurrentProducts(): Product[] {
-//     return this.products[this.activeTab];
-//   }
-
-//   onSubmit(): void {
-//     if (this.formData.name && this.formData.email && this.formData.message) {
-//       alert('Thank you for your inquiry! We will contact you shortly.');
-//       this.resetForm();
-//     } else {
-//       alert('Please fill in all required fields.');
-//     }
-//   }
-
-//   resetForm(): void {
-//     this.formData = {
-//       name: '',
-//       email: '',
-//       phone: '',
-//       company: '',
-//       product: '',
-//       message: ''
-//     };
-//   }
-
-//   onImageError(event: any): void {
-//     event.target.src = 'assets/images/placeholder.jpg'; // Fallback image
-//   }
-// }
-
